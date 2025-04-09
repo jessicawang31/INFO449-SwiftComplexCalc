@@ -68,7 +68,10 @@ class Calculator {
     
     // multiply
     func multiply(_ args: [Int]) -> Int {
-        return args.reduce(0, *);
+        if (args.count == 0) {
+            return 0;
+        }
+        return args.reduce(1, *);
     }
     
     // divide
@@ -107,13 +110,13 @@ class Calculator {
     // add
     func add(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
         guard let lhsx = lhs["x"], let lhsy = lhs["y"], let rhsx = rhs["x"], let rhsy = rhs["y"] else {return [:]}
-        return ["x": lhsx + rhsx, "y": rhsy + rhsy];
+        return ["x": lhsx + rhsx, "y": lhsy + rhsy];
     }
     
     // subtract
     func subtract(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
         guard let lhsx = lhs["x"], let lhsy = lhs["y"], let rhsx = rhs["x"], let rhsy = rhs["y"] else {return [:]}
-        return ["x": lhsx - rhsx, "y": rhsy - rhsy];
+        return ["x": lhsx - rhsx, "y": lhsy - rhsy];
     }
     
 }
