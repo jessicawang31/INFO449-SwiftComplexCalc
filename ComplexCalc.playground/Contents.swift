@@ -86,6 +86,9 @@ class Calculator {
     
     // avg
     func avg(_ args: [Int]) -> Int {
+        if (args.count == 0) {
+            return 0;
+        }
         return args.reduce(0, +) / args.count;
     }
     
@@ -134,7 +137,23 @@ let calc = Calculator()
 //: Keep in mind that writing new tests may reveal ambiguity in the specification above--if that's the case, document the ambiguity, declare what you think *should* happen, and write the test to test for it.
 
 // ===== Your tests go here
+// negative numbers
+calc.add(lhs: 2, rhs: -2) == 0
+calc.subtract(lhs: 2, rhs: -2) == 4
+calc.multiply(lhs: 2, rhs: -2) == -4
+calc.divide(lhs: 2, rhs: -2) == -1
 
+calc.add([1, 2, 3, 4, -5]) == 5
+calc.multiply([-1, 2, 3, 4, 5]) == -120
+calc.avg([2, 2, 2, -2]) == 1
+
+// empty array
+calc.avg([]) == 0
+calc.add([]) == 0
+calc.subtract([]) == 0
+calc.multiply([]) == 0
+calc.divide([]) == 0
+calc.count([]) == 0
 //: ---
 //: ## Test code block
 //: Do not modify the code in this section
