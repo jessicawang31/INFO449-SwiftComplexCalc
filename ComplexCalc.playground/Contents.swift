@@ -28,6 +28,94 @@ print("Welcome back to the UW Calculator")
 //: IMPORTANT: If any tests are commented out, you will be graded a zero (0)! You should never be in the habit of eliminating tests to make the code pass.
 //:
 class Calculator {
+    // basic calculation
+    // add
+    func add(lhs: Int, rhs: Int) -> Int {
+        return lhs + rhs;
+    }
+    
+    // subtract
+    func subtract(lhs: Int, rhs: Int) -> Int {
+        return lhs - rhs;
+    }
+    
+    // multiply
+    func multiply(lhs: Int, rhs: Int) -> Int {
+        return lhs * rhs;
+    }
+    
+    // divide
+    func divide(lhs: Int, rhs: Int) -> Int {
+        return lhs / rhs;
+    }
+        
+    //mathOp
+    func mathOp(lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int {
+        return op(lhs, rhs);
+    }
+    
+    
+    // array calculation
+    // add
+    func add(_ args: [Int]) -> Int {
+        return args.reduce(0, +);
+    }
+    
+    // subtract
+    func subtract(_ args: [Int]) -> Int {
+        return args.reduce(0, -);
+    }
+    
+    // multiply
+    func multiply(_ args: [Int]) -> Int {
+        return args.reduce(0, *);
+    }
+    
+    // divide
+    func divide(_ args: [Int]) -> Int {
+        return args.reduce(0, /);
+    }
+    
+    // count
+    func count(_ args: [Int]) -> Int {
+        return args.count;
+    }
+    
+    // avg
+    func avg(_ args: [Int]) -> Int {
+        return args.reduce(0, +) / args.count;
+    }
+    
+    //mathOp
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
+        return args.reduce(beg, op);
+    }
+        
+    
+    // (x, y) tuple calculation
+    // add
+    func add(lhs: (x: Int, y: Int), rhs: ((x: Int, y: Int))) -> (x: Int, y: Int) {
+        return (x: lhs.x + rhs.x, y: lhs.y + rhs.y);
+    }
+    
+    // subtract
+    func subtract(lhs: (x: Int, y: Int), rhs: ((x: Int, y: Int))) -> (x: Int, y: Int) {
+        return (x: lhs.x - rhs.x, y: lhs.y - rhs.y);
+    }
+    
+    // maps calculation
+    // add
+    func add(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        guard let lhsx = lhs["x"], let lhsy = lhs["y"], let rhsx = rhs["x"], let rhsy = rhs["y"] else {return [:]}
+        return ["x": lhsx + rhsx, "y": rhsy + rhsy];
+    }
+    
+    // subtract
+    func subtract(lhs: [String: Int], rhs: [String: Int]) -> [String: Int] {
+        guard let lhsx = lhs["x"], let lhsy = lhs["y"], let rhsx = rhs["x"], let rhsy = rhs["y"] else {return [:]}
+        return ["x": lhsx - rhsx, "y": rhsy - rhsy];
+    }
+    
 }
 
 //: Don't change the name of this object (`calc`); it's used in all the tests.
@@ -52,7 +140,7 @@ calc.subtract(lhs: 2, rhs: 2) == 0
 calc.multiply(lhs: 2, rhs: 2) == 4
 calc.divide(lhs: 2, rhs: 2) == 1
 
-calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rjs) + (lhs * rhs) }) == 35
+calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (lhs * rhs) }) == 35
     // This style is one way of writing an anonymous function
 calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
     // This is the second, more terse, style; either works
